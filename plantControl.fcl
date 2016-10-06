@@ -1,0 +1,120 @@
+FUNCTION_BLOCK plantControl
+
+VAR_INPUT
+	time : REAL;
+	humidity : REAL;
+	sensation : REAL;
+	absorptance : REAL;
+	soilHumidity : REAL;
+END_VAR
+
+VAR_OUTPUT
+	health : REAL;
+        cooler : REAL;
+        solenoid : REAL;
+        light : REAL;
+END_VAR
+
+//BEGIN FUZZIFY
+//Milisegundos
+FUZZIFY time
+	TERM morning := (0, 1) (5, 0);   //7:00 - 12:00
+	TERM afternoon := (5, 1) (11, 0); //12:00 - 18:00
+	TERM night :=  (11, 1) (24, 1);     //18:00 - 7:00
+END_FUZZIFY
+
+//Porcentagem
+FUZZIFY humidity
+	TERM dry := (0, 1) (15, 1) (35, 0);
+	TERM wet := (20, 0) (47, 1) (75, 0);
+	TERM saturated := (60,0) (82, 1) (100, 1);
+END_FUZZIFY
+
+//Grau Celcius
+FUZZIFY sensation
+	TERM veryHot := (30, 0) (45, 1);
+	TERM hot := (25, 0) (30, 1) (35, 0);
+        TERM room := (20, 0) (25, 1) (30, 0);
+	TERM cold := (15, 0) (20, 1) (25, 0);
+	TERM veryCold := (0, 1) (15, 1) (20, 0);
+END_FUZZIFY
+
+//Porcentagem
+FUZZIFY absorptance
+	TERM veryLight := (0, 1) (35, 1) (40, 0);
+	TERM light := (35, 0) (40, 1) (55, 1) (60, 0);
+	TERM dark := (55, 0) (60, 1) (75,1) (80, 0);
+	TERM veryDark := (75, 0) (80, 1) (100, 1);
+END_FUZZIFY
+
+//Porcentagem
+FUZZIFY soilHumidity
+	TERM wilted := (0, 1) (15, 0);
+	TERM dry := (13,0) (26.5, 1) (40, 0);
+	TERM plantingLand := (35, 0) (55, 1) (75, 0);
+	TERM saturated := (70, 0) (85, 1) (100, 1);
+END_FUZZIFY
+
+//BEGIN DEFUZZIFY 
+//Porcentagem
+DEFUZZIFY health
+	TERM dead := (0, 0) (10, 1) (20, 0);
+	TERM sick := (15, 0) (20, 1) (60, 1) (70, 0);
+	TERM healthy := (65, 0) (70,1) (100, 1);
+	METHOD : COG;
+	DEFAULT := 0;
+END_DEFUZZIFY
+
+//PWM
+DEFUZZIFY cooler
+	TERM slow := (0, 1) (42.5, 1) (90, 0);
+	TERM medium := (75, 0) (127.5, 1) (175, 0);
+	TERM fast := (160, 0) (255, 1);
+	METHOD : COA;
+	DEFAULT := 0;
+END_DEFUZZIFY
+
+//PWM
+DEFUZZIFY solenoid
+	TERM low := (0, 1) (42.5, 1) (90, 0);
+	TERM medium := (75, 0) (127.5, 1) (175, 0);
+	TERM high := (160, 0) (255, 1);
+    	METHOD : COG;
+	DEFAULT := 0;
+END_DEFUZZIFY
+
+//PWM
+DEFUZZIFY light
+	TERM dark := (0, 1) (42.5, 1) (90, 0);
+        TERM penumbra := (75, 0) (127.5, 1) (175, 0);
+        TERM backlighted := (160, 0) (255, 1);
+	METHOD : COG;
+	DEFAULT := 0;
+END_DEFUZZIFY
+
+//BEGIN RULES
+RULEBLOCK No1
+        AND : MIN;                  // Use 'min' for 'and' 
+        ACT : MIN;                  // Use 'min' activation method
+        ACCU : MAX;                 // Use 'max' accumulation method
+
+        RULE 1 : IF absorptance IS veryLight OR absorptance IS light THEN health IS healthy;
+        RULE 2 : IF absorptance IS dark THEN health IS sick; 
+        RULE 3 : IF absorptance IS veryDark THEN health IS dead;
+
+        RULE 4 : IF soilHumidity IS wilted THEN solenoid IS high;
+        RULE 5 : IF soilHumidity IS dry AND sensation IS veryHot THEN solenoid IS high;
+        RULE 6 : IF soilHumidity IS dry THEN solenoid IS medium;
+        RULE 7 : IF soilHumidity IS saturated THEN solenoid IS low;
+
+        RULE 8 : IF time IS morning THEN light IS penumbra;
+        RULE 9 : IF time IS afternoon THEN light IS backlighted;
+        RULE 10 : IF time IS night THEN light IS dark;
+
+        RULE 11 : IF sensation IS veryCold OR sensation IS cold THEN cooler IS slow;
+        RULE 12 : IF sensation IS room AND humidity IS saturated THEN cooler IS medium;
+        RULE 13 : IF sensation IS hot THEN cooler IS medium;
+        RULE 14 : IF sensation is veryHot THEN cooler IS fast;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
