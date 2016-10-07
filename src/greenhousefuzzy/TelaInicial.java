@@ -355,11 +355,11 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jSliderSensationStateChanged
 
     private void jSliderAbsorptanceStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderAbsorptanceStateChanged
-        jTextField4.setText(String.valueOf(jSliderAbsorptance.getValue()));
+        jTextField5.setText(String.valueOf(jSliderAbsorptance.getValue()));
     }//GEN-LAST:event_jSliderAbsorptanceStateChanged
 
     private void jSliderSoilStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderSoilStateChanged
-        jTextField5.setText(String.valueOf(jSliderSoil.getValue()));
+        jTextField6.setText(String.valueOf(jSliderSoil.getValue()));
     }//GEN-LAST:event_jSliderSoilStateChanged
 
     /**
