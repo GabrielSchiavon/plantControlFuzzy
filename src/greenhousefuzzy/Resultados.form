@@ -127,7 +127,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Noto Sans" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Health:"/>
+            <Property name="text" type="java.lang.String" value="Health (%):"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldHealth">
@@ -174,7 +174,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Noto Sans" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cooler:"/>
+            <Property name="text" type="java.lang.String" value="Cooler (PWM):"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldCooler">
@@ -196,7 +196,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="jTextFieldSolenoid" min="-2" pref="194" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -221,7 +221,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Noto Sans" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Solenoid:"/>
+            <Property name="text" type="java.lang.String" value="Solenoid (PWM):"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldSolenoid">
@@ -268,7 +268,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Noto Sans" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Light:"/>
+            <Property name="text" type="java.lang.String" value="Light (PWM):"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldLight">

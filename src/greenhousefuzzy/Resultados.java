@@ -75,7 +75,7 @@ public class Resultados extends javax.swing.JFrame {
         jLabel1.setText("Results:");
 
         jLabel6.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
-        jLabel6.setText("Health:");
+        jLabel6.setText("Health (%):");
 
         jTextFieldHealth.setEditable(false);
         jTextFieldHealth.setText("jTextField1");
@@ -105,7 +105,7 @@ public class Resultados extends javax.swing.JFrame {
         );
 
         jLabel7.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
-        jLabel7.setText("Cooler:");
+        jLabel7.setText("Cooler (PWM):");
 
         jTextFieldCooler.setEditable(false);
         jTextFieldCooler.setText("jTextField2");
@@ -135,7 +135,7 @@ public class Resultados extends javax.swing.JFrame {
         );
 
         jLabel8.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
-        jLabel8.setText("Solenoid:");
+        jLabel8.setText("Solenoid (PWM):");
 
         jTextFieldSolenoid.setEditable(false);
         jTextFieldSolenoid.setText("jTextField3");
@@ -150,7 +150,7 @@ public class Resultados extends javax.swing.JFrame {
             .addGroup(jLayeredPane5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTextFieldSolenoid, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -165,7 +165,7 @@ public class Resultados extends javax.swing.JFrame {
         );
 
         jLabel9.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
-        jLabel9.setText("Light:");
+        jLabel9.setText("Light (PWM):");
 
         jTextFieldLight.setEditable(false);
         jTextFieldLight.setText("jTextField4");
