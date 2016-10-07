@@ -18,9 +18,9 @@ END_VAR
 //BEGIN FUZZIFY
 //Milisegundos
 FUZZIFY time
-	TERM morning := (0, 1) (5, 0);   //7:00 - 12:00
-	TERM afternoon := (5, 1) (11, 0); //12:00 - 18:00
-	TERM night :=  (11, 1) (24, 1);     //18:00 - 7:00
+    TERM morning := (0, 0) (0, 1) (5, 1) (5, 0);   //00:00 - 5:00
+    TERM afternoon := (5, 0) (5, 1) (11, 1) (11, 0); //5:00 - 11:00
+    TERM night :=  (11, 0) (11, 1) (24, 1) (24, 0);     //11:00 - 24:00
 END_FUZZIFY
 
 //Porcentagem
