@@ -98,23 +98,31 @@ RULEBLOCK No1
         ACT : MIN;                  // Use 'min' activation method
         ACCU : MAX;                 // Use 'max' accumulation method
 
-        RULE 1 : IF absorptance IS veryLight OR absorptance IS light THEN health IS healthy;
-        RULE 2 : IF absorptance IS dark THEN health IS sick; 
-        RULE 3 : IF absorptance IS veryDark THEN health IS dead;
+        RULE 1 : IF absorptance IS veryLight THEN health IS healthy;
+        RULE 2 : IF absorptance IS light THEN health IS healthy;
+        RULE 3 : IF absorptance IS dark THEN health IS sick; 
+        RULE 4 : IF absorptance IS veryDark THEN health IS dead;
 
-        RULE 4 : IF soilHumidity IS wilted THEN solenoid IS high;
-        RULE 5 : IF soilHumidity IS dry AND sensation IS veryHot THEN solenoid IS high;
-        RULE 6 : IF soilHumidity IS dry THEN solenoid IS medium;
-        RULE 7 : IF soilHumidity IS saturated THEN solenoid IS low;
+        RULE 5 : IF soilHumidity IS wilted THEN solenoid IS high;
+        RULE 6 : IF soilHumidity IS dry AND sensation IS veryHot THEN solenoid IS high;
+        RULE 7 : IF soilHumidity IS dry AND sensation IS hot THEN solenoid IS medium;
+        RULE 8 : IF soilHumidity IS dry AND sensation IS room THEN solenoid IS medium;
+        RULE 9 : IF soilHumidity IS dry AND sensation IS cold THEN solenoid IS medium;
+        RULE 10: IF soilHumidity IS dry AND sensation IS veryCold THEN solenoid IS medium;
+        RULE 11: IF soilHumidity IS plantingLand THEN solenoid IS low;
+        RULE 12: IF soilHumidity IS saturated THEN solenoid IS low;
 
-        RULE 8 : IF time IS morning THEN light IS penumbra;
-        RULE 9 : IF time IS afternoon THEN light IS backlighted;
-        RULE 10 : IF time IS night THEN light IS dark;
+        RULE 13: IF time IS morning THEN light IS penumbra;
+        RULE 14: IF time IS afternoon THEN light IS backlighted;
+        RULE 15: IF time IS night THEN light IS dark;
 
-        RULE 11 : IF sensation IS veryCold OR sensation IS cold THEN cooler IS slow;
-        RULE 12 : IF sensation IS room AND humidity IS saturated THEN cooler IS medium;
-        RULE 13 : IF sensation IS hot THEN cooler IS medium;
-        RULE 14 : IF sensation is veryHot THEN cooler IS fast;
+        RULE 16: IF sensation IS veryCold THEN cooler IS slow;
+        RULE 17: IF sensation IS cold THEN cooler IS slow;
+        RULE 18: IF sensation IS room AND humidity IS saturated THEN cooler IS medium;
+        RULE 19: IF sensation IS room AND humidity IS wet THEN cooler IS slow;
+        RULE 20: IF sensation IS room AND humidity IS dry THEN cooler IS slow;
+        RULE 21: IF sensation IS hot THEN cooler IS medium;
+        RULE 22: IF sensation is veryHot THEN cooler IS fast;
 END_RULEBLOCK
 
 END_FUNCTION_BLOCK
